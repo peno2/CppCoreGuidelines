@@ -650,24 +650,30 @@ If two `int`s are meant to be the coordinates of a 2D point, say so:
 
 ##### Example
 
-Duplicated code obscures intent and makes it harder to understand the logic. Remove duplicated code.
+Duplicated or redundant code obscures intent and makes it harder to understand the logic. Remove such code.
 
-    void day(bool workday)    // Bad, duplicated code.
+    void day(bool workday, int year)    // Bad, duplicated/redundant code.
     {
         if (workday) {
-            haveBreakfast();
+            haveBreakfast(); // duplicated
             goToWork();
-            haveDinner();   
+            haveDinner();    // duplicated
         }
         else {
             haveBreakfast();
             readABook();
             haveDinner();
         }
-
+        if (leapYear(year)) {
+            doSomethingSpecial();
+            return;
+        else {            // redundant else after return
+            doAsUsual();
+            return;
+        }                
     }
 
-    void day(bool workday)    // Good, no duplicated code.
+    void day(bool workday, int year)    // Good, no redundant code.
     {
         haveBreakfast();
         if (workday)
@@ -675,6 +681,11 @@ Duplicated code obscures intent and makes it harder to understand the logic. Rem
         else
             readABook();
         haveDinner();
+        if (leapYear(year)) {
+            doSomethingSpecial();
+            return;
+        }
+        doAsUsual();
     }
 
 
@@ -688,7 +699,7 @@ Look for common patterns for which there are better alternatives
 * loop variables in too large a scope
 * naked `new` and `delete`
 * functions with many parameters of built-in types
-* remove duplicated code
+* remove redundant code
 
 There is a huge scope for cleverness and semi-automated program transformation.
 
