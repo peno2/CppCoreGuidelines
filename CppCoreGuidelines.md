@@ -9982,7 +9982,8 @@ Duplicated or otherwise redundant code obscures intent and makes it harder to un
 
 Use standard algorithms where apropriate, instead of writing some own implementation.
 
-**See also**: [SL.1](#Rsl-lib)
+**See also**: [SL.1](#Rsl-lib), [F.1](#Rf-package)
+
 
 
 ##### Example
